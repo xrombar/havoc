@@ -184,10 +184,13 @@ auto HcPagePlugins::LoadScript(
 
     if ( LoadCallback.has_value() ) {
         try {
+            spdlog::debug( "attempting to acquire python lock" );
             HcPythonAcquire();
 
+            spdlog::debug( "invoking callback.." );
             LoadCallback.value()( path ).cast<void>();
 
+            spdlog::debug( "adding script path.." );
             AddScriptPath( path.c_str() );
         } catch ( py11::error_already_set &eas ) {
             //
