@@ -132,7 +132,7 @@ auto HcPluginManager::loadPlugin(
     auto loader = QPluginLoader( QString::fromStdString( path ) );
     
     
-    spdlog::debug( "loader: {}", loader );
+    spdlog::debug( "loader: {}", fmt::ptr( loader ) );
     auto plugin = qobject_cast<IHcPlugin*>( loader.instance() );
 
 
