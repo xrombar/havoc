@@ -128,10 +128,8 @@ auto HcPluginManager::loadPlugin(
     const std::string& path
 ) -> void {
 
-    spdlog::debug( "hot potato 1" );
+    spdlog::debug( "path: {}", path );
     auto loader = QPluginLoader( QString::fromStdString( path ) );
-
-    spdlog::debug( "hot potato 2 " );
     
     
     spdlog::debug( "loader: {}\n loader.instance(): {}", loader, loader.instance );
