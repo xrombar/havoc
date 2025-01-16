@@ -142,7 +142,6 @@ auto HcPluginManager::loadPlugin(
         fmt::ptr( plugin )
     );
 
-    spdlog::debug( "hot potato 3" );
     if ( !plugin ) {
         spdlog::error(
             "HcPluginManager::loadPlugin failed to load plugin {}: {}",
