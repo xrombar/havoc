@@ -127,8 +127,13 @@ HcPluginManager::HcPluginManager() : core_app( new HcCoreApp ) {}
 auto HcPluginManager::loadPlugin(
     const std::string& path
 ) -> void {
+
+    spdlog::debug( "hot potato 1" );
     auto loader = QPluginLoader( QString::fromStdString( path ) );
+
+    spdlog::debug( "hot potato 2 " );
     auto plugin = qobject_cast<IHcPlugin*>( loader.instance() );
+
 
     spdlog::debug( "loader.instance(): {} ({}) factory: {}",
         fmt::ptr( loader.instance() ),
@@ -136,6 +141,7 @@ auto HcPluginManager::loadPlugin(
         fmt::ptr( plugin )
     );
 
+    spdlog::debug( "hot potato 3" );
     if ( !plugin ) {
         spdlog::error(
             "HcPluginManager::loadPlugin failed to load plugin {}: {}",
@@ -150,7 +156,11 @@ auto HcPluginManager::loadPlugin(
         fmt::ptr( plugin )
     );
 
+    spdlog::debug( "invoking entrypoint of plugin" );
+
     plugin->main( core_app );
+
+    spdlog::debug( "adding plugin to the list" );
 
     plugins.push_back( plugin );
 }
