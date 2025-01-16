@@ -132,6 +132,9 @@ auto HcPluginManager::loadPlugin(
     auto loader = QPluginLoader( QString::fromStdString( path ) );
 
     spdlog::debug( "hot potato 2 " );
+    
+    
+    spdlog::debug( "loader: {}\n loader.instance(): {}", loader, loader.instance );
     auto plugin = qobject_cast<IHcPlugin*>( loader.instance() );
 
 
